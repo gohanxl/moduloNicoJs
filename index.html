@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Nicardooou</title>
+  </head>
+  <body>
+    <h1>Modulo JavaScript</h1>
+    <hr />
+
+    <p>INDICE:</p>
+    <ul class="indice">
+      <li><a href="#primeraUnidad">Primera Unidad!</a></li>
+      <li><a href="#segundaUnidad">Segunda Unidad!</a></li>
+      <li><a href="#tercerUnidad">Tercera Unidad!</a></li>
+      <li><a href="#cuartaUnidad">Cuarta Unidad!</a></li>
+      <li><a href="#quintaUnidad">Quinta Unidad!</a></li>
+    </ul>
+
+    <h2 id="primeraUnidad">
+      Primera Unidad: Cadena Prototipal - Prototypal Chain?
+    </h2>
+
+    <button id="hide1" class="" style="width: 100px; height: 60px">
+      MOSTRA EL CONTENIDO PAPA
+    </button>
+
+    <br />
+    <br />
+
+    <div class="container">
+      <div id="container1" class="hidden">
+        <div class="bobo">Ejercicio A:</div>
+        <br />
+        Se puede crear un
+        <strong>Objeto que herede los protos de un Array</strong>. <br />Para
+        hacer esto creamos una
+        <mark
+          >variable tipo array, y a otra variable le asignamos el valor
+          Object.create(nombreArray);</mark
+        >
+        De esta manera, en nuestro ejemplo, logramos que rama tenga todos los
+        protos que puede utilizar un array comun y corriente.<br />Para
+        probarlo, use .push para agregarle un valor a rama, lo imprimi y se ve
+        como funciona correctamente.
+        <br />
+        <br />
+        <div class="bobo">Ejercicio B:</div>
+        <br />
+        <strong
+          >Cuando cambio una propiedad que apunte directamente al __proto__
+          afecta a toda la cadena prototipal</strong
+        >. En el ejemplo se ve como le cambio la propiedad C al __proto__ de
+        bocchini y afecta a todo la cadena, incluyendo a doyel que seria el
+        constructor.
+        <mark>Para evitar esto, use la funcion freeze de la clase Object</mark>,
+        la cual evita que se le agreguen nuevas propiedades; impide que se
+        puedan eliminar las propiedades ya existentes; impide que dichas
+        propiedades, o su capacidad de enumeración, configuración, o escritura,
+        puedan ser modificadas; impide también que se pueda modificar su
+        prototipo. Aparte, los objetos que heredan no pueden sobreescribir
+        propiedades que esten definidas en el proto del padre. Esto se ve cuando
+        invoco a doyel.b y cambia el valor de b, pero cuando invoco a bocchini.b
+        no cambia nada.
+        <br />
+        <br />
+        <div class="bobo">Ejercicio C:</div>
+        <br />
+        La principal diferencia entre herencia clasica y herencia prototipal es
+        que en la herencia prototipal
+        <mark
+          >la herencia es selectiva y no genera taxonomia de clases
+          automaticamente.</mark
+        >
+        Al contrario, la herencia clasica trae muchos problemas consigo en un
+        lenguaje como JavaScript, ya que se tiene que usar la keyword new, la
+        cual no cumple con las features funcionales de este lenguaje, ademas de
+        la taxonomia de objetos padres/hijos automatica y el no cumplimiento de
+        la convencion DRY.
+        <br />
+        <br />
+        <div class="bobo">Ejercicio D:</div>
+        <br />
+        La <mark>prototipal es menos costosa</mark> comparando codigo que
+        contienen los mismos metodos los cuales estan definidos de maneras
+        distintas: usando prototype y cuando no usan prototypes.
+        <a
+          href="https://blog.yonatan.dev/prototype-optimizing-memory-usage/"
+          target="_blank"
+          >Esto se deja en claro en este articulo.</a
+        >
+        Esto sucede ya que la ventaja de los Prototypes es que nos permite crear
+        un blueprint (un plano base) y asi no tener que instanciar los metodos
+        cada vez que creemos un objeto nuevo, cosa que si sucede si usamos la
+        keyword new sin prototypes.
+      </div>
+
+      <h2 id="segundaUnidad">Segunda Unidad - Coercion</h2>
+      <button id="hide2" class="" style="width: 100px; height: 60px">
+        MOSTRA EL CONTENIDO PAPA
+      </button>
+
+      <br /><br />
+
+      <div id="container2" class="hidden">
+        <div>Ejercicio A:</div>
+        <br />
+        <mark>
+          El wrapper Number() convierte el argumento a un numero primitivo que
+          represente este valor. Si no lo puede convertir retorna NaN (Not a
+          Number). <br />
+          El wrapper Boolean() convierte en boolean un valor. Si el valor es
+          omitido?? o es 0, -0, null, false, NaN, undefined o un string vacio
+          (''), el objeto creado tendra un valor inicial falso. En caso
+          contrario, tendra un valor inicial de true (incluyendo arrays o el
+          string 'false'). </mark
+        ><br />
+        <br />
+
+        <div>Ejercicio B:</div>
+        <br />
+        Number y Boolean hacen la conversion en base a si pueden convertir o no
+        el valor que se les pasen. <br />
+
+        En el caso de Number(),
+        <mark
+          >esta funcion utiliza las reglas de ToNumber(), por ejemplo, cuando
+          hacemos Number(false) lo convierte a 0, ya que en JavaScript 0 es un
+          falsy que equivale a false. Lo mismo pasaria si hacemos Number(true),
+          lo convierte a 1. Si esto no funciona, retorna un NaN.
+        </mark>
+        Para el creamos de Objetos y Arrays, estos seran convertidos a su valor
+        primitivo, y el valor resultante de esto es convertido a un numero. Para
+        que estos tipos sean convertidos a su valor primitivo, se usa la funcion
+        <mark
+          >ToPrimative que consulta el valor, a traves de un DefaultValue para
+          chequear si se tiene un metodo valueOf(). Si se lo obtiene y retorna
+          un valor primitivo, se usa ese valor. Sino, si toString() esta
+          disponible, este provee el valor para la coercion. Si ninguna de las
+          dos puede proveer un valor para la coercion, se devuelve un typeError.
+        </mark>
+
+        <br />
+
+        Con Boolean lo que pasa es que se basa en lo que se consideran truthy y
+        falsy de JavaScript,
+        <mark>
+          esto implica que cualquier conversion de un falsy devuelve falso y
+          viceversa, usando la logica del ToBoolean().
+        </mark>
+        Hay un caso especial que son los falsy objects, los cuales serian
+        Objetos truthy pero wrappeados por el Boolean(), por ejemplo
+        Boolean(false), lo increible es que esta conversion devuelve falso, ya
+        que estos 'falsy objects' no son de JS en si, sino que de los browsers.
+        Algunos de estos browsers tienen su propia definicion de compartamiento
+        para valores, lo que termina convirtiendo un objeto que se comporta y se
+        ve como un objeto normal, pero cuando le aplicas coercion con un
+        Boolean() devuelve falso. A veces se pueden dar conversiones raras
+        cuando comparamos valores, dependiendo de como hayamos declarado el
+        Boolean (con o sin new).
+        <mark>
+          Esto pasa cuando lo creamos con new, se crea un Object wrapper y no un
+          wrapper para convertir valores a primitivos. Es posible ver esto
+          cuando tratamos de comparar usando un == en vez de un ===. Si lo
+          hacemos con new Boolean(true) == true (Esto da true), pero new
+          Boolean(true) === true (da false)</mark
+        >
+        <br />
+        <br />
+
+        <div>Ejercicio C:</div>
+        <br />
+        <strong>parseInt():</strong> Parsea un string y lo convierte en un
+        numero en una base especifica. Toma dos parametros, el numero y la base,
+        que puede ser de 2 a 36. A partir de ES5, el parseInt() ya no intenta
+        decifrar a que base tiene que convertir (por convencion lo hacia a
+        base-16).<br />
+        <strong>Number():</strong> crea un objeto Number de tipo primitivo,
+        pasando el valor a ser convertido por el unico parametro que recibe.
+        <br />
+        <mark
+          >La diferencia entre los dos se da en la manera que aplica la logica
+          cada uno</mark
+        >, ya que el parseInt() tiene en cuenta cosas que el Number() no, como
+        por ejemplo: la base a convertir, espacios en blanco, etc. La diferencia
+        mas visible es cuando quieres parsear un string que contenga letras,
+        como por ejemplo 42px. En el caso del Number("42px") = NaN, y en el caso
+        de parseInt("42px") = 42.
+        <mark>
+          Ya que el parse tolera tener caracteres dentro de la string,
+          ignorandolos, y la coercion no es tolerante, devolviendo NaN
+          directamente.</mark
+        >
+      </div>
+      <h2 id="tercerUnidad">Tercera Unidad - Lexical Environment</h2>
+
+      <div>Ejercicio A:</div>
+
+      <br /><br />
+
+      <div>Ejercicio A.1:</div>
+      <br />
+      Esta primera funcion imprime los numeros del 0 al 4, y funciona asi ya
+      que, al ser un closure, este guarda la referencia del valor que se le pasa
+      como argumento, si es que este esta presente en la funcion wrapper.
+
+      <br /><br />
+
+      <div>Ejercicio A.2:</div>
+      <br />
+      Esta segunda funcion imprime los numeros del 0 al 4, y funciona asi ya
+      que, la variable 'a' al estar definida como 'let', tiene un scope de
+      bloque, es decir dentro de <strong>{curly braces}</strong>. Esto implica
+      que mantiene una referencia distinta para cada iteracion, obteniendo asi un valor
+      nuevo para cada una de ellas. <br /><br />
+
+      <div>Ejercicio A.3:</div>
+      <br />
+      Esta tercera funcion imprime el numero 5 cinco veces, y funciona asi ya
+      que, 'a' al estar definida como 'var', tiene un scope funcional, lo que
+      implica que solo tenes una referencia que va a ser compartida por todas
+      las iteracioens, calculando asi cinco vueltas, lo cual va a permanecer
+      como el valor para el resto de las iteraciones.
+
+      <br /><br />
+
+      <div>Ejercicio B: Closure</div>
+      <br />
+      Un closure o clausura es la combinación de una función y el ámbito léxico
+      en el que se declaró dicha función. Es decir los closures o clausuras son
+      funciones que manejan variables independientes. En otras palabras, la
+      función definida en el closure "recuerda" el ámbito en el que se ha
+      creado. El entorno está formado por las variables locales que estaban
+      dentro del alcance en el momento que se creó el closure. <br />
+      En el ejemplo que se ve en consola, podemos apreciar como actua un
+      closure. miFunc() es un closure el cual entiende e incorpora la funcion
+      mostrarNombre(), tanto como el string 'Nico Picantovich' que ya existian
+      cuando se creo el closure.
+
+      <br /><br />
+
+      <div>Ejercicio C: Hoisting</div>
+      <br />
+
+      En el primer caso C.1, el console.log se imprime correctamente ya que al
+      ser declarado de esta manera (function x(){...}) implica que es una
+      funcion declarada, es decir que es procesada cuando la ejecucion entra en
+      el contexto en el que aparece, ANTES de ejecutar cualquier otro codigo
+      step-by-step. Por esto es posible llamar la funcion antes de que sea
+      declarada.
+      <br />
+      En el segundo caso C.2, el console.log no imprime nada ya que la funcion
+      esta declarada como una funcion anonima (var x = function(){...}) esta es
+      ejecutada cuando el step-by-step llegue a la linea de codigo en la que se
+      encuentre declarada esta funcion. Por esto, cuando se llama de nuevo a la
+      funcion ramaCall(), imprime el mismo numero que en el primer caso.
+      <br />
+      En el tercer caso C.3, la consola indica que la funcion no existe, ya que
+      sucede lo mismo que en el segundo caso, con la salvedad de que en este
+      caso no es una funcion anonima, sino que una funcion con nombre (var x =
+      function y(){...}) (NFE). La funcion llamaCall() al estar siendo llamada
+      antes de ser declarada, resulta en un error el cual indica que no existe,
+      ya que en la ejecucion step-by-step, no existe.
+      <br />
+      En el cuarto caso C.4, no se ejecuta por dos cosas: llamaCall() corta la
+      ejecucion al no existir, ademas de que rama() nunca es declarada como
+      funcion en ninguna parte del codigo.
+      <br />
+
+      Note: step-by-step se refiere a que JavaScript es un lenguaje
+      interpretado, es decir que traduce el codigo a medida que lo va
+      ejecutando. En esto entra en juego distintos Scopes (GEC, FEC, Eval) y el
+      Execution Context.
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+* {
+  font-family: "Lato", sans-serif;
+  background-color: #f2f2f2;
+}
+
+mark {
+  background-color: lightgreen;
+  color: black;
+}
+
+.container {
+  width: 50%;
+}
+
+.bobo {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: darkgreen;
+}
+
+a:active,
+a:hover {
+  color: lightgreen;
+}
+
+.hidden {
+  display: none;
+}
